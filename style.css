@@ -52,7 +52,7 @@ body{
     color: var(--text-color);
     font-weight: 500;
     margin-left: 3.5rem;
-    transition: 3s;
+    transition: .3s;
 }
 
 .navbar a:hover, .navbar a.active{
@@ -123,21 +123,47 @@ section{
     height: 100%;
     background: var(--main-color);
     border: .2rem solid var(--main-color);
-    border-radius: 8rem;
+    border-radius: .8rem;
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: .1rem;
-    color: var(--bg-color);   
+    color: var(--bg-color); 
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;  
+}
+
+.button-box .btn:hover{
+    color: var(--main-color);
+}
+
+.button-box .btn:nth-child(2){
+    background: transparent;
+    color: var(--main-color);
+}
+
+.button-box .btn:nth-child(2):hover{
+    color: var(--bg-color);
+}
+
+.button-box .btn:nth-child(2)::before{
+    background: var(--main-color);
 }
 
 
-.button-box .btn::before{
+.button-box .btn::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 100%;
-    background: red;
+    background: var(--bg-color);
     z-index: -1;
+    transition: .5s;
+}
+
+
+.button-box .btn:hover::before {
+    width: 100%;
 }
