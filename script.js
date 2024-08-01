@@ -1,3 +1,15 @@
+import {
+    app,
+    analytics,
+    db,
+    collection,
+    setDoc,
+    addDoc,
+    doc
+} from "./utilis/utilis.js";
+
+
+
 //toogle icon navbar
 
 
@@ -52,6 +64,59 @@ window.onscroll = () => {
     // animation footer on scroll
 
     let footer = document.querySelector('footer');
-    
+
     footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
 }
+
+
+
+
+
+// firebase start here
+
+
+console.log(app);
+console.log(db);
+console.log(analytics);
+
+
+const sendBtn = document.getElementById('sendBtn');
+
+
+sendBtn.addEventListener('click', ()=>{
+
+sendBtn.innerHTML = 'Sending'
+sendBtn.disabled = true
+
+    // now importing all input field for using there values by getting there id's
+
+
+const fullName = document.getElementById('fullName');
+const emailAddress = document.getElementById('emailAddress');
+const phoneNumber = document.getElementById('phoneNumber');
+const mailingSubject = document.getElementById('mailingSubject');
+const contractorMessage = document.getElementById('contractorMessage');
+
+
+// now creating a object using these variables
+
+
+const contractorDetails = {
+    fullName: fullName.value,
+    emailAddress: emailAddress.value,
+    phoneNumber: phoneNumber.value,
+    mailingSubject: mailingSubject.value,
+    contractorMessage: contractorMessage.value,
+}
+// now sending the contractor details to the firebase database
+
+const contractorDetailsCollection = collection(db, "contractor");
+addDoc(contractorDetailsCollection, contractorDetails)
+.then(()=>{
+    console.log("Contractor details added to the database");
+    window.location.href = './thanks page/index.html'
+    sendBtn.innerHTML = 'Submit'
+    sendBtn.disabled = false
+})
+    
+})
