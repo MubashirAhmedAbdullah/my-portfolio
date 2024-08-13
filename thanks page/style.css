@@ -77,7 +77,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .thank-you-message h1 {
+      .thank-you-message h1 {
         font-size: 1.8rem;
     }
 
